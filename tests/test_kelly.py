@@ -33,6 +33,17 @@ def test_long_only_clips_shorts_and_caps_leverage():
     assert w.sum() <= 1.0 + 1e-9
 
 
+def test_fraction_holds_cash_when_cap_binds():
+    # Raw Kelly here is levered (weight 1.5), so the no-leverage cap binds.
+    # Half Kelly must then be HALF-invested, not re-inflated back to 100% —
+    # otherwise full and half Kelly would be the same portfolio.
+    mu, sigma = one_asset(0.08, 0.04)
+    full = kelly_weights(mu, sigma, risk_free=0.02, fraction=1.0, long_only=True)
+    half = kelly_weights(mu, sigma, risk_free=0.02, fraction=0.5, long_only=True)
+    assert full.sum() == pytest.approx(1.0)
+    assert half.sum() == pytest.approx(0.5)
+
+
 def test_singular_covariance_does_not_crash():
     mu = pd.Series({"A": 0.05, "B": 0.05})
     sigma = pd.DataFrame([[0.04, 0.04], [0.04, 0.04]], index=mu.index, columns=mu.index)

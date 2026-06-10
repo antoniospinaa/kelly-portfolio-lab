@@ -17,16 +17,20 @@ def kelly_weights(mu: pd.Series, sigma: pd.DataFrame, risk_free: float = 0.0,
 
     long_only=True reflects a normal brokerage account: negative weights are
     clipped to zero and, if the total exceeds 100%, weights are scaled down
-    so the portfolio never uses leverage. Leftover weight is implicit cash.
+    so the portfolio never uses leverage. The fraction is applied AFTER the
+    constraint — "half Kelly" means holding half of the constrained Kelly
+    portfolio and the rest in cash. Applying the fraction first would let the
+    no-leverage cap re-inflate it, making full and half Kelly identical
+    whenever the raw weights are levered.
     """
     excess = (mu - risk_free).values
     cov = sigma.values + RIDGE * np.eye(len(mu))
     raw = np.linalg.solve(cov, excess)
-    weights = pd.Series(fraction * raw, index=mu.index)
+    weights = pd.Series(raw, index=mu.index)
 
     if long_only:
         weights = weights.clip(lower=0.0)
         total = weights.sum()
         if total > 1.0:
             weights = weights / total
-    return weights
+    return fraction * weights
