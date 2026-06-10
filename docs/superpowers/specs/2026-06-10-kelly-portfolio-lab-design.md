@@ -20,7 +20,7 @@ Success criteria:
 **Phase 2 (out of scope):** Streamlit dashboard demo.
 **Phase 3 (out of scope):** Alpaca paper-trading integration; real money only after the demo proves out.
 
-Asset universe: 3–6 ETFs (e.g., broad equity, bonds, gold) defined in `config.yaml`.
+Asset universe: 3–6 ETFs defined in `config.yaml`. Defaults: SPY (US equity), TLT (long Treasuries), GLD (gold), with a default backtest period of 2006–present (covers the 2008 and 2020 crashes — important for the drawdown story). Tony can edit tickers without touching code.
 
 ## Architecture
 
