@@ -1,6 +1,6 @@
 # Kelly Portfolio Lab
 
-![tests](https://github.com/tony03spinag/kelly-portfolio-lab/actions/workflows/ci.yml/badge.svg)
+![tests](https://github.com/antoniospinaa/kelly-portfolio-lab/actions/workflows/ci.yml/badge.svg)
 ![python](https://img.shields.io/badge/python-3.11%2B-blue)
 
 From thesis to tool: this repo turns my capstone — *Maximizing Long-Term
