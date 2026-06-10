@@ -1,0 +1,6 @@
+tickers: [SPY, TLT, GLD]
+start_date: "2006-01-01"
+risk_free_rate: 0.02      # annual, used as the Kelly hurdle
+kelly_fraction: 0.5       # half-Kelly: the headline strategy
+lookback_months: 60       # history window for estimating mu and sigma
+transaction_cost: 0.001   # 0.1% of turnover per rebalance
