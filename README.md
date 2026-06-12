@@ -15,11 +15,11 @@ prints the allocation I actually use for my own account each month.
 
 | Strategy | CAGR | Max Drawdown | Sharpe |
 |---|---|---|---|
-| Full Kelly | 10.4% | -23.7% | 0.81 |
-| Half Kelly | 5.2% | -12.5% | 0.61 |
-| Quarter Kelly | 2.6% | -6.4% | 0.23 |
-| Buy & Hold SPY | 13.7% | -23.9% | 0.83 |
-| 60/40 (SPY/TLT) | 9.5% | -26.2% | 0.76 |
+| Full Kelly | 10.5% | -23.7% | 0.83 |
+| Half Kelly | 5.3% | -12.5% | 0.63 |
+| Quarter Kelly | 2.6% | -6.4% | 0.25 |
+| Buy & Hold SPY | 13.9% | -23.9% | 0.85 |
+| 60/40 (SPY/TLT) | 9.6% | -26.2% | 0.77 |
 
 *Walk-forward, monthly rebalance, 0.1% transaction costs, SPY/TLT/GLD universe,
 all strategies aligned to the same start date (≈2011, after the 5-year
@@ -71,6 +71,17 @@ pytest
 
 Tickers, lookback, costs, and the Kelly fraction live in
 [config.yaml](config.yaml).
+
+## Agent mode — use it without writing code
+
+The repo ships with [AGENTS.md](AGENTS.md): drop into any coding agent
+(Claude Code, Codex, Cursor, …) inside this folder and just talk to it —
+*"I have $500 to invest, what does the model say?"*. The agent runs the
+report and backtests for you, explains results in plain language, keeps an
+append-only ledger of what you actually bought, and maintains a journal it
+re-reads each session so it remembers your decisions and tracks how the
+strategy performs. Everything personal stays in `my-portfolio/`, which is
+gitignored. The agent never places trades — it only suggests; you execute.
 
 ## Project structure
 
